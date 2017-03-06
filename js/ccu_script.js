@@ -77,6 +77,11 @@ var gastos_table,tbMain, approved_table, training_table;
 					"data":           null,
 					"orderable": 	false,
 					"defaultContent": "<center><button id='approvalsBtn_Main' type='button' class='btn btn-xs'><span class='glyphicon glyphicon-user'></span></button></center>"
+				},
+                {
+					"data":           null,
+					"orderable": 	false,
+					"defaultContent": "<center><button id='HRPortionBtn_Main' type='button' class='btn btn-xs'><span class='glyphicon glyphicon-user'></span></button></center>"
 				}
 			]
 		});
@@ -229,6 +234,11 @@ $('#main_table tbody').on( 'click', 'button', function () {
                     $('#get_request_details_modal').modal('show');
                     getRequestDetailsFunction(rs['n_requestId']);
                     break;
+                
+                case 'HRPortionBtn_Main':
+                    $('#hr_potion_request_modal').appendTo("body").modal('show');
+                    hr_portion_display_data(rs['n_requestId']);
+                    break;
             }
 			
 });
@@ -249,7 +259,10 @@ $('#get_request_details_modal').on('shown.bs.modal',function(){
 });
 $('#get_approvals_modal').on('shown.bs.modal',function(){
         $(this).find('.modal-dialog').css({width:'80%', height:'auto', 'max-height':'100%'});
-});   
+}); 
+$('#hr_potion_request_modal').on('shown.bs.modal',function(){
+    $(this).find('.modal-dialog').css({width:'80%', height:'auto', 'max-height':'100%'});
+});    
 $('#approve_request').click(function(e){
     e.preventDefault();
     var sess_token, sess_user;

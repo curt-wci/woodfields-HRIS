@@ -43,6 +43,7 @@ if(isset($_GET['function']))
         case "getPersonnelRequest_Report" : {getPersonnelRequest_Report($conn); break;}
         case "getEmpTrainingRequest_Report" : {getEmpTrainingRequest_Report($conn); break;}
         case "get_hr_potion_details" : {get_hr_potion_details($func2,$conn); break;}
+        case "add_hr_portion_details" : {add_hr_portion_details($func2,$conn);break;}
         default : {
             die("FunctionCallException: Function not found to execute. Please try again!");
         break;}
@@ -387,6 +388,34 @@ function get_hr_potion_details($func2,$conn){
     WHEN `vacancy_status` = 7 THEN "ORIENTATION"
     ELSE null END) AS "vacancy_status", `vacancy_from`, `vacancy_to`, `remarks` FROM `pr_hr_portion` WHERE `request_id` = ?';
     echo '{"data": '. json_bind_multi($conn,$sql_statement,$arr) .' }';
+}
+function add_hr_portion_details($func2,$conn){
+    $key = array();
+    $value = array();
+    $sql_statement = "INSERT INTO `pr_hr_portion` (";
+    
+    foreach($func2 as $item)
+    {
+        array_push($key,strtolower($item['name']));
+        array_push($value,$item['value']);
+    }
+    $request_id = intval(end($value));
+    array_pop($value);
+    
+    
+    for($x=0; $x<count($key);$x++){
+        $sql_statement = $sql_statement."`".$key[$x]."`, ";
+    }
+    $sql_statement = rtrim ($sql_statement , " , ");
+    $sql_statement.= ") VALUES(?,?,?,?,?)";
+    array_push($value,$request_id);
+    print $sql_statement;
+    var_dump($value);
+    var_dump($request_id);
+    $stmt = $conn->prepare($sql_statement) or die($stmt->error);
+    DynamicBindVariables($stmt,$value);
+    $result = $stmt->execute();
+    echo $result;
 }
 
 

@@ -1,0 +1,68 @@
+html {
+    margin:0 auto;
+	padding:10px;
+    height:100%;
+	background-image: url("../images/background.png");
+	 background-repeat: no-repeat;
+    background-position: right top;
+    background-attachment: fixed;
+	background-color: white;
+   
+}
+body{
+	
+	background-color: white;
+	
+}
+
+
+/*****************
+	LOGIN FORM
+******************/
+body#home-login {
+	background: #333 url("../images/login_bg.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: fixed;
+}
+
+form.form-signin {
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e69de+0,3690f0+49,54a3ee+50,6db3f2+100 */
+	background: #1e69de; /* Old browsers */
+	background: -moz-linear-gradient(top,  #1e69de 0%, #3690f0 49%, #54a3ee 50%, #6db3f2 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #1e69de 0%,#3690f0 49%,#54a3ee 50%,#6db3f2 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #1e69de 0%,#3690f0 49%,#54a3ee 50%,#6db3f2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e69de', endColorstr='#6db3f2',GradientType=0 ); /* IE6-9 */
+
+	/*margin: auto;*/
+	margin-top: 5em;
+	margin-left: auto;
+	margin-right: auto;
+    max-width: 45em;
+    max-height: 80em;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: -5px 1px 10px #bababa;
+}
+
+button.btn {
+	background-color: #ff7676;
+	border: none;
+}
+
+button.btn:hover {
+	background-color: #ff5a5a;
+}
+form.form-signin input {
+	text-align: center;
+}
+
+form.form-signin h3 {
+	color: #fff;
+	text-align: center;
+	font-family: Roboto Condensed, Verdana;
+	font-weight: bold;
+}
+
+
+

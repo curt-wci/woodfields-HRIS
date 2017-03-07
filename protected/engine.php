@@ -25,7 +25,7 @@ if(isset($_GET['function']))
     $func2 = $_GET['extra'];
         
     switch($func){
-        case "getAllPersonnelRequest" : {getAllPersonnelRequest($conn); break;}
+        case "getAllPersonnelRequest" : {getAllPersonnelRequest($conn,$func2); break;}
         case "getRequestDetails" : {getRequestDetails($conn,$func2); break;}  
         case "getApproval" : {getApproval($conn,$func2); break;}
         case "approvePersonnelRequest" : {approvePersonnelRequest($conn,$func2); break;}
@@ -121,14 +121,22 @@ function getAllTrainingRequestByUserType($conn){
     echo '{"data": '. json_bind_multi($conn,$sql_statement,$paramList) .' }';
     
 }
-function getAllPersonnelRequest($conn){
+function getAllPersonnelRequest($conn,$isFilter){
     $qry = "SELECT * FROM personnel_request p
     JOIN positionxx po ON p.n_posnumbr = po.n_posinmbr 
-    JOIN department d ON p.n_deptnmbr = d.n_deptnmbr WHERE request_status = ? ";
+    JOIN department d ON p.n_deptnmbr = d.n_deptnmbr";
+    
+    if($isFilter == 'true'){
+        $qry .=" WHERE request_status = ? ";
+        $paramList = array();
+        $paramList[] = 1;
+        echo '{"data": '. json_bind_multi($conn,$qry,$paramList) .' }';
+    }
+    else{
+         echo '{"data": '. jsonPDO($qry,$conn) .' }';
+    }
       
-    $paramList = array();
-    $paramList[] = 1;
-    echo '{"data": '. json_bind_multi($conn,$qry,$paramList) .' }';
+    
 }
 function getPersonnelRequestById($conn,$func2){
     $qry = "SELECT n_deptnmbr, n_posnumbr,d_mobiDate FROM personnel_request WHERE n_requestId = ?";
@@ -402,16 +410,12 @@ function add_hr_portion_details($func2,$conn){
     $request_id = intval(end($value));
     array_pop($value);
     
-    
     for($x=0; $x<count($key);$x++){
         $sql_statement = $sql_statement."`".$key[$x]."`, ";
     }
     $sql_statement = rtrim ($sql_statement , " , ");
     $sql_statement.= ") VALUES(?,?,?,?,?)";
     array_push($value,$request_id);
-    print $sql_statement;
-    var_dump($value);
-    var_dump($request_id);
     $stmt = $conn->prepare($sql_statement) or die($stmt->error);
     DynamicBindVariables($stmt,$value);
     $result = $stmt->execute();

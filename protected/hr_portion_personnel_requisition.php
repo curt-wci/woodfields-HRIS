@@ -94,124 +94,27 @@ function showButtonIfExecutive(){
             <h2 class="ccu_heading" style="text-align:left; margin-top: 10px">Quick Links</h2> <a class="btn btn-primary">Request Leave</a> <a href="add_training.php" class="btn btn-primary">Request Training</a>
             <button class="btn btn-primary" id="add_new_personnel_request">Request Personnel</button>
             <hr>
-            <h2 class="ccu_heading" style="text-align:left;" id="trainings_label">Training Request</h2>
-            
-            <table id="training_request_table">
+            <h2 class="ccu_heading">Employee Requisition - HR Portion </h2>
+            <table id="HR_PORTION_table">
 			<thead>
-					<th>Training Title</th>
-					<th>Request By</th>
-					<th>Job - Department</th>
-					<th>Schedule</th>
-					<th>Cost</th>
-					<th>Organization</th>
-					<th>Venue</th>
-					<th>Charging</th>
-					<th>Status</th>
-					<th>View Request</th>
+				<th>Requesting Dept</th>
+				<th>Job Title</th>
+				<th>Request Date</th>
+                <th>Mobilization Date</th>
+                <th>Employment Type</th>
+                <th>Employment Duration</th>
+                <th>Replacement</th>
+                <th>Budgetary Details</th>
+                <th>Justification</th>
+                <th>Job Summary</th>
+                <th>Qualification and Others</th>
+                <th>Approvals</th>
+                <th>HR Portion</th>
 			</thead>
 			</table>
-<br>
-<br>          
-<h2 class="ccu_heading" style="text-align:left;" id="emp_request_label">Employee Requisition </h2>
-<table id="main_table">
-			<thead>
-					<th></th>
-					<th></th>
-					<th>Requesting Dept</th>
-					<th>Job Title</th>
-					<th>Request Date</th>
-					<th>Mobilization Date</th>
-					<th>Request Details</th>
-					<th>Approvals</th>
-			</thead>
-        </table>
         </div>
-
-<div class="modal fade" id="get_request_details_modal" tabindex="-1" role="dialog" aria-labelledby="get_request_details_modal" style="overflow: auto">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Personnel Requisition Details</h4>
-      </div>
-      <div class="modal-body">
-      <button class="btn btn-primary" id="request_details_add_btn">Add</button>
-      <button class="btn btn-warning" id="request_details_edit_btn">Edit</button>
-      <button class="btn btn-danger" id="request_details_delete_btn">Delete</button>
-      <table id="request_details_table"  width="100%">
-          <thead>
-              <tr>
-                  <th>Employment Type</th>
-                  <th>Duration From</th>
-                  <th>Duration Until</th>
-                  <th>Replacement</th>
-                  <th>Budget Included</th>
-                  <th>Budget Clearance</th>
-                  <th>Date</th>
-              </tr>
-          </thead>
-      </table>
-      <table id="request_details_table2"  width="100%">
-        <thead>
-            <tr>
-                <th>Justification</th>
-            </tr>
-        </thead>
-        </table>
-          <table id="request_details_table3" width="100%">
-              <thead>
-                  <tr>
-                      <th>Job Summary</th>
-                  </tr>
-              </thead>
-          </table>
-          <table id="request_details_table4" width="100%">
-              <thead>
-                  <tr>
-                      <th>Qualifications and Other Requirements</th>
-                  </tr>
-              </thead>
-          </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
     </div>
-    </div>
-    </div>
-
-<div id="get_approvals_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="get_approvals_modal">
-  <div class="modal-dialog modal-md">
-    <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <div class="modal-title">
-          Personnel Requisition Approvals
-		  </div>
-        </div>
-        <div class="modal-body" style="height: 350px;">
-          <table id="request_approval_table" width="80%">
-              <thead>
-                  <tr>
-                      <th>Endoresed By</th>
-                      <th>Recommending Approval</th>
-                      <th>Approved By</th>
-                  </tr>
-              </thead>
-          </table>
-          
-    </div>
-    <div class="modal-footer">
-        <?php
-                showButtonIfExecutive();
-            ?>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-<script type="text/javascript" src="js/ccu_script.js"></script>
+    
+    <script src="js/ccu_script.js"></script>
     </body>
-
-    </html>
+</html>

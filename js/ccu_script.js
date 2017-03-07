@@ -28,10 +28,12 @@ $.ajax({
         }
     }
 });
+    
 
-var gastos_table,tbMain, approved_table, training_table;
+var gastos_table,tbMain, approved_table, training_table, HR_P;
     var rs = [];
     var train_rs = [];
+    var resultSet = [];
     var id =null;
     tbMain = $('#main_table').DataTable({
 			"bDestroy": true,
@@ -44,7 +46,7 @@ var gastos_table,tbMain, approved_table, training_table;
 			"pageLength": 100,
             "responsive" : true,
 			"ajax": { "url": "engine.php",
-					  "data": { "function": "getAllPersonnelRequest","extra": "" },
+					  "data": { "function": "getAllPersonnelRequest","extra": "true" },
 					  "type": "GET"
 					},
 			"columns": [
@@ -77,15 +79,9 @@ var gastos_table,tbMain, approved_table, training_table;
 					"data":           null,
 					"orderable": 	false,
 					"defaultContent": "<center><button id='approvalsBtn_Main' type='button' class='btn btn-xs'><span class='glyphicon glyphicon-user'></span></button></center>"
-				},
-                {
-					"data":           null,
-					"orderable": 	false,
-					"defaultContent": "<center><button id='HRPortionBtn_Main' type='button' class='btn btn-xs'><span class='glyphicon glyphicon-user'></span></button></center>"
 				}
 			]
 		});
-    
     training_table = $('#training_request_table').DataTable( {
        "bDestroy": true,
 		"searching": false,
@@ -132,6 +128,95 @@ var gastos_table,tbMain, approved_table, training_table;
 				}
         ]
     });
+    HR_P = $('#HR_PORTION_table').DataTable({
+			"bDestroy": true,
+            "pageLength": 50,
+            "responsive" : true,
+            "ajax": { "url": "engine.php",
+					  "data": { "function": "getPersonnelRequest_Report","extra": "" },
+					  "type": "GET"
+					},
+			"columns": [
+				{ "data" : "s_deptdesc" },
+                { "data" : "s_posidesc" },
+                {"data"   : "",
+                 "render" :  function(data, type, mySource, meta){
+                     
+                     return date_parser(mySource.request_date);
+                 } },
+                {"data"   : "",
+                 "render" :  function(data, type, mySource, meta){
+                     
+                     return date_parser(mySource.d_mobiDate);
+                 } },
+                {"data"   : "",
+                 "render" :  function(data, type, mySource, meta){
+                     if(isNull(mySource.employment_type))
+                         return "No data";
+                     else
+                         return mySource.employment_type;
+                 }},
+                {
+                "data" : "",
+                 "render" :  function(data, type, mySource, meta){
+                     if(isNull(mySource.emp_dur_from) || isNull(mySource.emp_dur_to))
+                         return "No data";
+                     else
+                         return date_parser(mySource.emp_dur_from)+" - "+date_parser(mySource.emp_dur_to);
+                 } },
+                {"data"   : "",
+                 "render" :  function(data, type, mySource, meta){
+                     if(isNull(mySource.replaced_by))
+                         return "No data";
+                     else
+                         return mySource.replaced_by;
+                 }},
+                {"data"   : "",
+                 "render" :  function(data, type, mySource, meta){
+                     var content = mySource.isBudget + "<br>"+
+                         checkNull(mySource.budget_clearance)+"<br>"+
+                         checkNull(mySource.budget_clearance_date)+"<br>";
+                     
+                     return content;
+                 } },
+                {"data"   : "",
+                 "render" :  function(data, type, mySource, meta){
+                     if(isNull(mySource.justification))
+                         return "No data";
+                     else
+                         return mySource.justification;
+                 }},
+                {"data"   : "",
+                 "render" :  function(data, type, mySource, meta){
+                     if(isNull(mySource.job_summary))
+                         return "No data";
+                     else
+                         return mySource.job_summary;
+                 }},
+                {"data"   : "",
+                 "render" :  function(data, type, mySource, meta){
+                     if(isNull(mySource.qual_other_req))
+                         return "No data";
+                     else
+                         return mySource.qual_other_req;
+                 }},
+                {"data"   : "",
+                 "render" :  function(data, type, mySource, meta){
+                     //mySource.isApproveAdmin + "<br>" + mySource.isApproveEVP + "<br>" + mySource.isApproveCEO
+                     var admin = checkNull(mySource.isApproveAdmin);
+                     var coo = checkNull(mySource.isApproveEVP);
+                     var ceo = checkNull(mySource.isApproveCEO);
+                     
+                     return "<center>"+admin + " " + coo + " " + ceo + "</center>";
+                 } },
+                {
+                    "data":           null,
+                    "orderable": 	false,
+                    "defaultContent": "<center><button id='HRPortionBtn_HRPortion' type='button' class='btn btn-xs'><span class='glyphicon glyphicon-user'></span></button></center>"
+				}
+                
+			]
+		});
     
     
 
@@ -147,8 +232,7 @@ $.ajax({
             }));
         }
     }
-});
-    
+});   
 $.ajax({
     url: "engine.php",
     data: {function: "getAllDepartment", extra: ""},
@@ -161,35 +245,33 @@ $.ajax({
             }));
         }
     }
-});
-    
-$.ajax({
-    url: "engine.php",
-    data: {function: "getAllPosition", extra: ""},
-    success : function(data){
-        var obj = JSON.parse(data);
-        for(var i = 0; i<= obj.data.length -1; i++){
-            $("#n_posnumbr").append($('<option>', { 
-                value: obj.data[i].n_posinmbr,
-                text: obj.data[i].s_posidesc
-            }));
-        }
-    }
-});
-    
-$.ajax({
-    url: "engine.php",
-    data: {function: "getAllDepartment", extra: ""},
-    success : function(data){
-        var obj = JSON.parse(data);
-        for(var i = 0; i<= obj.data.length -1; i++){
-            $("#n_deptnmbr").append($('<option>', { 
-                value: obj.data[i].n_deptnmbr,
-                text: obj.data[i].s_deptdesc
-            }));
-        }
-    }
-});
+});   
+//$.ajax({
+//    url: "engine.php",
+//    data: {function: "getAllPosition", extra: ""},
+//    success : function(data){
+//        var obj = JSON.parse(data);
+//        for(var i = 0; i<= obj.data.length -1; i++){
+//            $("#n_posnumbr").append($('<option>', { 
+//                value: obj.data[i].n_posinmbr,
+//                text: obj.data[i].s_posidesc
+//            }));
+//        }
+//    }
+//});
+//$.ajax({
+//    url: "engine.php",
+//    data: {function: "getAllDepartment", extra: ""},
+//    success : function(data){
+//        var obj = JSON.parse(data);
+//        for(var i = 0; i<= obj.data.length -1; i++){
+//            $("#n_deptnmbr").append($('<option>', { 
+//                value: obj.data[i].n_deptnmbr,
+//                text: obj.data[i].s_deptdesc
+//            }));
+//        }
+//    }
+//});
 
 
 //---- button clicked in datatable ------
@@ -252,6 +334,42 @@ $('#training_request_table').on('click','button',function(){
             
         break;
     }
+});
+
+$('#HR_PORTION_table tbody').on( 'click', 'button', function () {
+    resultSet = HR_P.row( $(this).parents('tr') ).data();
+    switch(this.id){
+        
+        case 'approvalsBtn_HRPortion':
+            $('#get_approvals_modal').modal('show');
+            getApprovals(resultSet['n_requestId']);
+            break;
+        
+        case 'reqDetailBtn_HRPortion':
+            console.log("It works!");
+            $('#get_request_details_modal').modal('show');
+            getRequestDetailsFunction(resultSet['n_requestId']);
+            break;
+            
+        case 'HRPortionBtn_HRPortion':
+            var count = 0;
+            if(isNull(resultSet['isApproveAdmin']) == false)
+                count ++;
+            if(isNull(resultSet['isApproveEVP']) == false)
+                count ++;
+            if(isNull(resultSet['isApproveCEO']) == false)
+                count ++;
+            
+            if(count == 0){
+                swal("Invalid Request","HR Portion is locked. Please complete the signatories in the approval section","error");
+            }else{
+              $('#hr_potion_request_modal').appendTo("body").modal('show');
+            hr_portion_display_data(resultSet['n_requestId']);  
+            }
+            break;
+        
+    }
+			
 });
     
 $('#get_request_details_modal').on('shown.bs.modal',function(){
@@ -360,6 +478,22 @@ $('#request_details_edit_btn').click(function(e){
 
     
 }); // End of document.ready
+
+function checkNull(data){
+    if(data == "" || data === undefined || data == null || data == "null"){
+        return "";
+    }
+    else
+        return '<span class="glyphicon glyphicon-check"></span>';
+}
+
+function isNull(data){
+    if(data == "" || data === undefined || data == null || data == "null"){
+        return true;
+    }
+    else
+        return false;
+}
 
 function date_parser(date_string){
     if(date_string == "" || date_string === undefined)

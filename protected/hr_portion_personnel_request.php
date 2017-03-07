@@ -132,7 +132,8 @@ function hr_portion_display_data(request_id){
 			"data": {'function': 'get_hr_potion_details', 'extra' : request_id},
 			"type": "GET",
             "error" : function(){
-                swal("Invalid Data","No data found on employee training request.","error");
+                swal("Invalid Data","No data found on HR Portion.","error");
+                $('#hr_potion_request_modal').modal('hide');
             }
 			},
         "columns": [
@@ -167,7 +168,9 @@ $('#submit_hr_portion_details').click(function(e){
                     url : 'engine.php',
                     data : {'function' : "add_hr_portion_details", 'extra' : valToPass},
                     success : function(data){
-                        console.log(data);
+                        swal("Success","Operation has been executed properly","success");
+                        $("#hr_portion_main_table").DataTable().ajax.reload();
+                        $("#add_hr_portion_detail_modal").modal("hide");
                     }
                 });
             }

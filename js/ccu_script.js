@@ -153,7 +153,7 @@ var gastos_table,tbMain, approved_table, training_table, HR_P;
                 {"data"   : "",
                  "render" :  function(data, type, mySource, meta){
                      if(isNull(mySource.employment_type))
-                         return "No data";
+                         return "<font color=red>No Data</font>";
                      else
                          return mySource.employment_type;
                  }},

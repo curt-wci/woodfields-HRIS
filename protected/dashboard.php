@@ -93,6 +93,9 @@ function showButtonIfExecutive(){
         <div class="ccu_main">
             <h2 class="ccu_heading" style="text-align:left; margin-top: 10px">Quick Links</h2> <a class="btn btn-primary">Request Leave</a> <a href="add_training.php" class="btn btn-primary">Request Training</a>
             <button class="btn btn-primary" id="add_new_personnel_request">Request Personnel</button>
+            <a class="btn btn-primary" href="hr_portion_personnel_requisition.php" target="_blank">HR Portion - Personnel Requisition</a>
+            <a class="btn btn-primary" href="emp_training_request_report.php" target="_blank">Training Request Report</a>
+            <a class="btn btn-primary" href="emp_requisition_report.php" target="_blank">Personnel Requisiton Report</a>
             <hr>
             <h2 class="ccu_heading" style="text-align:left;" id="trainings_label">Training Request</h2>
             

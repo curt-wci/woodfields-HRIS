@@ -113,23 +113,62 @@ $l_statement = $conn->prepare("SELECT
                      
                      return date_parser(mySource.d_mobiDate);
                  } },
-                { "data" : "employment_type" },
                 {"data"   : "",
                  "render" :  function(data, type, mySource, meta){
-                 return date_parser(mySource.emp_dur_from)+" - "+date_parser(mySource.emp_dur_to);
+                     if(isNull(mySource.employment_type))
+                         return "<font color='red'>No data</font>";
+                     else
+                         return mySource.employment_type;
+                 }},
+                {
+                "data" : "",
+                 "render" :  function(data, type, mySource, meta){
+                     if(isNull(mySource.emp_dur_from) || isNull(mySource.emp_dur_to))
+                         return "<font color='red'>No data</font>";
+                     else
+                         return date_parser(mySource.emp_dur_from)+" - "+date_parser(mySource.emp_dur_to);
                  } },
-                { "data" : "replaced_by" },
                 {"data"   : "",
                  "render" :  function(data, type, mySource, meta){
-                     var content = mySource.isBudget + "<br>"+
+                     if(isNull(mySource.replaced_by))
+                         return "<font color='red'>No data</font>";
+                     else
+                         return mySource.replaced_by;
+                 }},
+                {"data"   : "",
+                 "render" :  function(data, type, mySource, meta){
+                     var content;
+                     
+                     if(isNull(mySource.isBudget) || isNull(mySource.budget_clearance) || isNull(mySource.budget_clearance_date))
+                         return "<font color='red'>No data</font>";
+                     else{
+                         var content = checkNull(mySource.isBudget) + "<br>"+
                          checkNull(mySource.budget_clearance)+"<br>"+
                          checkNull(mySource.budget_clearance_date)+"<br>";
-                     
+                     }
                      return content;
                  } },
-                { "data" : "justification" },
-                { "data" : "job_summary" },
-                { "data" : "qual_other_req" },
+                {"data"   : "",
+                 "render" :  function(data, type, mySource, meta){
+                     if(isNull(mySource.justification))
+                         return "<font color='red'>No data</font>";
+                     else
+                         return mySource.justification;
+                 }},
+                {"data"   : "",
+                 "render" :  function(data, type, mySource, meta){
+                     if(isNull(mySource.job_summary))
+                         return "<font color='red'>No data</font>";
+                     else
+                         return mySource.job_summary;
+                 }},
+                {"data"   : "",
+                 "render" :  function(data, type, mySource, meta){
+                     if(isNull(mySource.qual_other_req))
+                         return "<font color='red'>No data</font>";
+                     else
+                         return mySource.qual_other_req;
+                 }},
                 {"data"   : "",
                  "render" :  function(data, type, mySource, meta){
                      //mySource.isApproveAdmin + "<br>" + mySource.isApproveEVP + "<br>" + mySource.isApproveCEO
@@ -141,6 +180,15 @@ $l_statement = $conn->prepare("SELECT
                  } },
 			]
 		});
+        
+    function isNull(data){
+        if(data == "" || data === undefined || data == null || data == "null"){
+            return true;
+        }
+        else
+            return false;
+    
+    }
         
         
     function checkNull(data){

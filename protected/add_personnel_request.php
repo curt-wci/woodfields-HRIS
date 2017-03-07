@@ -80,6 +80,7 @@ $('#submitPersonnelRequest').click(function(e){
                 var valToPass = $('#addPersonnelRequest').serializeArray();
                 $.ajax({
                     url: "engine.php",
+                    type : 'POST',
                     data: {function: "InsertNewPersonnelRequest", extra: valToPass},
                     success : function(data){
                         

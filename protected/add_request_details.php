@@ -134,6 +134,7 @@ $('#submitPersonnelRequestDetails').click(function(e){
                 valToPass.push({name:'n_requestId',value: sessionStorage.getItem("request_id")});
                 $.ajax({
                     url: "engine.php",
+                    type : 'POST',
                     data: {function: "updatePersonnelRequest", extra: valToPass},
                     success : function(data){
                         console.log(data);
@@ -162,6 +163,7 @@ function editPersonnelRequest(data){
      $.ajax({
         url: "engine.php",
         data: {function: "getRequestDetails2", extra: data},
+        type : 'POST',
         success : function(data){
            var obj = JSON.parse(data);
             

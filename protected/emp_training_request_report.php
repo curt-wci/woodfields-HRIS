@@ -96,7 +96,7 @@ $l_statement = $conn->prepare("SELECT
             "ajax": {
 			"url": "engine.php",
 			"data": {'function': 'getEmpTrainingRequest_Report', 'extra' : ''},
-			"type": "GET",
+			"type": "POST",
             "error" : function(){
                 swal("Invalid Data","No data found on employee training request.","error");
                 $('#training_request_table').hide();

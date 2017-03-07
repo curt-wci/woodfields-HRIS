@@ -130,10 +130,9 @@ function hr_portion_display_data(request_id){
         "ajax": {
 			"url": "engine.php",
 			"data": {'function': 'get_hr_potion_details', 'extra' : request_id},
-			"type": "GET",
+			"type": "POST",
             "error" : function(){
                 swal("Invalid Data","No data found on HR Portion.","error");
-                $('#hr_potion_request_modal').modal('hide');
             }
 			},
         "columns": [
@@ -164,7 +163,7 @@ $('#submit_hr_portion_details').click(function(e){
                 var valToPass = $('#hr_portion_details_form').serializeArray();
                 valToPass.push({name: "request_id",value: Request_id});
                 $.ajax({
-                    type : 'GET',
+                    type : 'POST',
                     url : 'engine.php',
                     data : {'function' : "add_hr_portion_details", 'extra' : valToPass},
                     success : function(data){

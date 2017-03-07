@@ -16,6 +16,7 @@ $(".form_datetime").datetimepicker({
 $.ajax({
     url : "engine.php",
     data: {function: "getSessionStored", extra: ""},
+    type : 'POST',
     success : function(data){
         var obj = JSON.parse(data);
         var sess_user_type = obj[0].user_type.toString();
@@ -47,7 +48,7 @@ var gastos_table,tbMain, approved_table, training_table, HR_P;
             "responsive" : true,
 			"ajax": { "url": "engine.php",
 					  "data": { "function": "getAllPersonnelRequest","extra": "true" },
-					  "type": "GET"
+					  "type": "POST"
 					},
 			"columns": [
 				{
@@ -95,7 +96,7 @@ var gastos_table,tbMain, approved_table, training_table, HR_P;
         "ajax": {
 			"url": "engine.php",
 			"data": {'function': 'getAllTrainingRequestByUserType', 'extra' : ''},
-			"type": "GET",
+			"type": "POST",
             "error" : function(){
                 swal("Invalid Data","No data found on employee training request.","error");
                 $('#training_request_table').hide();
@@ -134,7 +135,7 @@ var gastos_table,tbMain, approved_table, training_table, HR_P;
             "responsive" : true,
             "ajax": { "url": "engine.php",
 					  "data": { "function": "getPersonnelRequest_Report","extra": "" },
-					  "type": "GET"
+					  "type": "POST"
 					},
 			"columns": [
 				{ "data" : "s_deptdesc" },
@@ -223,6 +224,7 @@ var gastos_table,tbMain, approved_table, training_table, HR_P;
 $.ajax({
     url: "engine.php",
     data: {function: "getAllPosition", extra: ""},
+    type : 'POST',
     success : function(data){
         var obj = JSON.parse(data);
         for(var i = 0; i<= obj.data.length -1; i++){
@@ -235,6 +237,7 @@ $.ajax({
 });   
 $.ajax({
     url: "engine.php",
+    type : 'POST',
     data: {function: "getAllDepartment", extra: ""},
     success : function(data){
         var obj = JSON.parse(data);
@@ -290,7 +293,7 @@ $('#main_table tbody').on( 'click', 'button', function () {
                          function(isConfirm){
                         if (isConfirm) {                           
                             $.ajax({
-                                type : 'GET',
+                                type : 'POST',
                                 url : 'engine.php',
                                 data : {'function' : "deleteRequest", 'extra' : rs['n_requestId']},
                                 success : function(data){
@@ -386,6 +389,7 @@ $('#approve_request').click(function(e){
     var sess_token, sess_user;
     $.ajax({
     url: "engine.php",
+    type : 'POST',
     data: {function: "getSessionStored", extra: ""},
     success : function(data){
         var obj = JSON.parse(data);
@@ -406,7 +410,7 @@ $('#approve_request').click(function(e){
         function(isConfirm){
             if (isConfirm) {
                 $.ajax({
-                    type : 'GET',
+                    type : 'POST',
                     url : 'engine.php',
                     data : {"function" : "approvePersonnelRequest", "extra" : sess_token+" " +sess_user + " "+rs['n_requestId']},
                     success : function(data){
@@ -452,7 +456,7 @@ $('#request_details_delete_btn').click(function(e){
          function(isConfirm){
             if (isConfirm) {
                 $.ajax({
-                    type : 'GET',
+                    type : 'POST',
                     url : 'engine.php',
                     data : {'function' : "deleteRequestDetails", 'extra' : rs['n_requestId']},
                     success : function(data){
@@ -523,7 +527,7 @@ function getRequestDetailsFunction(id){
         "ajax": {
 			"url": "engine.php",
 			"data": {'function': 'getRequestDetails', 'extra' : id},
-			"type": "GET",
+			"type": "POST",
             "error": function(){
                 swal("Invalid Data","No data found.","error");
             }
@@ -550,7 +554,7 @@ function getRequestDetailsFunction(id){
         "ajax": {
 			"url": "engine.php",
 			"data": {'function': 'getRequestDetails', 'extra' : id},
-			"type": "GET",
+			"type": "POST",
             "error" : function(){
                 swal("Invalid Data","No data found.","error");
             }
@@ -571,7 +575,7 @@ function getRequestDetailsFunction(id){
         "ajax": {
 			"url": "engine.php",
 			"data": {'function': 'getRequestDetails', 'extra' : id},
-			"type": "GET",
+			"type": "POST",
             "error" : function(){
                 swal("Invalid Data","No data found.","error");
             }
@@ -592,7 +596,7 @@ function getRequestDetailsFunction(id){
         "ajax": {
 			"url": "engine.php",
 			"data": {'function': 'getRequestDetails', 'extra' : id},
-			"type": "GET",
+			"type": "POST",
             "error" : function(){
                 swal("Invalid Data","No data found.","error");
             }
@@ -616,7 +620,7 @@ function getApprovals(id){
         "ajax": {
 			"url": "engine.php",
 			"data": {'function': 'getApproval', 'extra' : id},
-			"type": "GET"
+			"type": "POST"
 			},
         "columns": [
             {"data" : "isApproveAdmin"},

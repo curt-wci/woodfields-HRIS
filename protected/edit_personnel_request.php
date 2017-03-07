@@ -83,6 +83,7 @@ $('#submitEditPersonnelRequest').click(function(e){
                 valToPass.push({name:'n_requestId',value: req_ID});
                 $.ajax({
                     url: "engine.php",
+                    type : 'POST',
                     data: {function: "EditPersonnelRequest", extra: valToPass},
                     success : function(data){
                         $("#edit_personnel_request_modal").modal("hide");
@@ -100,6 +101,7 @@ function editPersonnelRequestForm(data){
     req_ID = data;
      $.ajax({
         url: "engine.php",
+        type : 'POST',
         data: {function: "getPersonnelRequestById", extra: data},
         success : function(data){
             console.log(data);

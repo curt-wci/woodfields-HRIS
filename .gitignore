@@ -49,4 +49,9 @@ Temporary Items
 # SQL File
 .sql
 
+#DB configuration
 config.php
+
+#eclipse files
+.buildpath
+.project

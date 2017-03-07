@@ -98,7 +98,7 @@ $l_statement = $conn->prepare("SELECT
             "responsive" : true,
             "ajax": { "url": "engine.php",
 					  "data": { "function": "getPersonnelRequest_Report","extra": "" },
-					  "type": "GET"
+					  "type": "POST"
 					},
 			"columns": [
 				{ "data" : "s_deptdesc" },

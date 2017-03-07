@@ -19,10 +19,10 @@ else
 }
 
 
-if(isset($_GET['function']))
+if(isset($_POST['function']))
 {
-    $func = $_GET['function'];
-    $func2 = $_GET['extra'];
+    $func = $_POST['function'];
+    $func2 = $_POST['extra'];
         
     switch($func){
         case "getAllPersonnelRequest" : {getAllPersonnelRequest($conn,$func2); break;}

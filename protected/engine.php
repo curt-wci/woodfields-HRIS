@@ -425,23 +425,22 @@ function add_hr_portion_details($func2,$conn){
 
 function json_bind_multi($conn,$stmt,$paramList)
 {
-    $arr = "[]";
+
     $out = "[]";
     $statement = $conn->prepare($stmt);
     DynamicBindVariables($statement,$paramList);
     $statement->execute();
-    $result = $statement->get_result();
-    
-    if($result->num_rows > 0){
-        while($row = $result->fetch_assoc())
-        {
-            $ar[] = $row;
+    $result = get_result($statement);
+
+    if($statement->num_rows > 0){
+        while($data = array_shift($result)){
+            $ar[] = $data;
         }
-        $out =  json_encode($ar);
-    }
-    else{
+        $out = json_encode($ar);
+    }else{
         return;
     }
+
     return $out;
 }
 
@@ -452,18 +451,15 @@ function jsonPDO($stmt, $conn)
     
     $stmt = $conn->prepare($stmt);
     $stmt->execute();
-    
-    $result = $stmt->get_result();
-    
-    if($result->num_rows > 0){
-        while($row = $result->fetch_assoc())
-        {
-            $ar[] = $row;
+    $result = get_result($stmt);
+
+    if($stmt->num_rows > 0){
+        while($data = array_shift($result)){
+            $ar[] = $data;
         }
-        return json_encode($ar);
-    }
-    else{
-        $out = json_encode("No result");
+        $out = json_encode($ar);
+    }else{
+        return;
     }
     
     return $out;
@@ -511,6 +507,21 @@ function DynamicBindVariables($stmt, $params)
         call_user_func_array(array($stmt,'bind_param'), $bind_names);
     }
     return $stmt;
+}
+
+function get_result( $Statement ) {
+    $RESULT = array();
+    $Statement->store_result();
+    for ( $i = 0; $i < $Statement->num_rows; $i++ ) {
+        $Metadata = $Statement->result_metadata();
+        $PARAMS = array();
+        while ( $Field = $Metadata->fetch_field() ) {
+            $PARAMS[] = &$RESULT[ $i ][ $Field->name ];
+        }
+        call_user_func_array( array( $Statement, 'bind_result' ), $PARAMS );
+        $Statement->fetch();
+    }
+    return $RESULT;
 }
 
 /** FOR DEBUG

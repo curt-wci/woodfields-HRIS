@@ -381,13 +381,13 @@ $('#HR_PORTION_table tbody').on( 'click', 'button', function () {
 });
     
 $('#get_request_details_modal').on('shown.bs.modal',function(){
-        $(this).find('.modal-dialog').css({width:'80%', height:'auto', 'max-height':'100%'});
+        $(this).find('.modal-dialog').css({width:'80%', height:'auto', 'max-height':'100%', 'margin':'auto','margin-top':'20px'});
 });
 $('#get_approvals_modal').on('shown.bs.modal',function(){
-        $(this).find('.modal-dialog').css({width:'80%', height:'auto', 'max-height':'100%'});
+        $(this).find('.modal-dialog').css({width:'80%', height:'auto', 'max-height':'100%', 'margin':'auto','margin-top':'20px'});
 }); 
 $('#hr_potion_request_modal').on('shown.bs.modal',function(){
-    $(this).find('.modal-dialog').css({width:'80%', height:'auto', 'max-height':'100%'});
+    $(this).find('.modal-dialog').css({width:'80%', height:'auto', 'max-height':'100%', 'margin':'auto','margin-top':'20px'});
 });    
 $('#approve_request').click(function(e){
     e.preventDefault();

@@ -19,8 +19,8 @@
                <div>
                    <button class="btn btn-primary" id="hr_portion_status_addBtn">Add Status</button>
                </div>
-                <div>
-                    <table id="hr_portion_main_table">
+                <div class="table-responsive">
+                    <table id="hr_portion_main_table" class="table">
                         <thead>
                             <th>Vacancy Status</th>
                             <th>From</th>

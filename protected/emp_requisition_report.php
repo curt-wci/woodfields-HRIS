@@ -71,22 +71,24 @@ $l_statement = $conn->prepare("SELECT
         <div style="margin-top: 10px; margin-left: 20px; margin-right: 20px">
             <h2 class="ccu_heading" style="text-align:center;" id="trainings_label">Personnel Requisition Report</h2>
             <hr>
-            <table id="personnel_request_table">
-			<thead>
-				<th>Requesting Dept</th>
-				<th>Job Title</th>
-				<th>Request Date</th>
-                <th>Mobilization Date</th>
-                <th>Employment Type</th>
-                <th>Employment Duration</th>
-                <th>Replacement</th>
-                <th>Budgetary Details</th>
-                <th>Justification</th>
-                <th>Job Summary</th>
-                <th>Qualification and Others</th>
-                <th>Approvals</th>
-			</thead>
-			</table>
+            <div class="table-responsive">
+                <table id="personnel_request_table" class="table">
+                    <thead>
+                    <th>Requesting Dept</th>
+                    <th>Job Title</th>
+                    <th>Request Date</th>
+                    <th>Mobilization Date</th>
+                    <th>Employment Type</th>
+                    <th>Employment Duration</th>
+                    <th>Replacement</th>
+                    <th>Budgetary Details</th>
+                    <th>Justification</th>
+                    <th>Job Summary</th>
+                    <th>Qualification and Others</th>
+                    <th>Approvals</th>
+                    </thead>
+                </table>
+            </div>
 
         </div>
     </body>

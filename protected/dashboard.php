@@ -91,44 +91,67 @@ function showButtonIfExecutive(){
             <h4 class="ccu_title_second" style="margin-bottom: 0"><?php echo $jobDesc ?></h4>
             <h4 class="ccu_title_second"><?php echo $deptdesc ?></h4> <a href="./dashboard.php">Home</a> <a href="#">Training</a> <a href="#">Leave</a> <a href="logout.php">Logout</a> </div>
         <div class="ccu_main">
-            <h2 class="ccu_heading" style="text-align:left; margin-top: 10px">Quick Links</h2> <a class="btn btn-primary">Request Leave</a> <a href="add_training.php" class="btn btn-primary">Request Training</a>
-            <button class="btn btn-primary" id="add_new_personnel_request">Request Personnel</button>
-            <a class="btn btn-primary" href="hr_portion_personnel_requisition.php" target="_blank">HR Portion - Personnel Requisition</a>
-            <a class="btn btn-primary" href="emp_training_request_report.php" target="_blank">Training Request Report</a>
-            <a class="btn btn-primary" href="emp_requisition_report.php" target="_blank">Personnel Requisiton Report</a>
+<!--            <button class="btn" data-toggle="collapse" data-target="ccu_button_group">Show More</button>-->
+<!--            <div class="collapse"id="ccu_button_group">-->
+<!--                <h2 class="ccu_heading" style="text-align:left; margin-top: 10px">Quick Links</h2>-->
+<!--                <a class="btn btn-primary">Request Leave</a>-->
+<!--                <a href="add_training.php" class="btn btn-primary">Request Training</a>-->
+<!--                <button class="btn btn-primary" id="add_new_personnel_request">Request Personnel</button>-->
+<!--                <a class="btn btn-primary" href="hr_portion_personnel_requisition.php" target="_blank">HR Portion - Personnel Requisition</a>-->
+<!--                <a class="btn btn-primary" href="emp_training_request_report.php" target="_blank">Training Request Report</a>-->
+<!--                <a class="btn btn-primary" href="emp_requisition_report.php" target="_blank">Personnel Requisiton Report</a>-->
+<!--            </div>-->
+
+            <button data-toggle="collapse" data-target="#demo" class="btn btn-primary">Show More Options!</button>
+
+            <div id="demo" class="collapse">
+                <h2 class="ccu_heading" style="text-align:left; margin-top: 10px">Quick Links</h2>
+                <a class="btn btn-primary">Request Leave</a>
+                <a href="add_training.php" class="btn btn-primary">Request Training</a>
+                <button class="btn btn-primary" id="add_new_personnel_request">Request Personnel</button>
+                <a class="btn btn-primary" href="hr_portion_personnel_requisition.php" target="_blank">HR Portion - Personnel Requisition</a>
+                <a class="btn btn-primary" href="emp_training_request_report.php" target="_blank">Training Request Report</a>
+                <a class="btn btn-primary" href="emp_requisition_report.php" target="_blank">Personnel Requisiton Report</a>
+
+            </div>
+
             <hr>
             <h2 class="ccu_heading" style="text-align:left;" id="trainings_label">Training Request</h2>
             
-            <table id="training_request_table">
-			<thead>
-					<th>Training Title</th>
-					<th>Request By</th>
-					<th>Job - Department</th>
-					<th>Schedule</th>
-					<th>Cost</th>
-					<th>Organization</th>
-					<th>Venue</th>
-					<th>Charging</th>
-					<th>Status</th>
-					<th>View Request</th>
-			</thead>
-			</table>
+            <div class="table-responsive">
+                <table id="training_request_table" class="table">
+                    <thead>
+                    <th>Training Title</th>
+                    <th>Request By</th>
+                    <th>Job - Department</th>
+                    <th>Schedule</th>
+                    <th>Cost</th>
+                    <th>Organization</th>
+                    <th>Venue</th>
+                    <th>Charging</th>
+                    <th>Status</th>
+                    <th>View Request</th>
+                    </thead>
+                </table>
+            </div>
 <br>
 <br>          
 <h2 class="ccu_heading" style="text-align:left;" id="emp_request_label">Employee Requisition </h2>
-<table id="main_table">
-			<thead>
-					<th></th>
-					<th></th>
-					<th>Requesting Dept</th>
-					<th>Job Title</th>
-					<th>Request Date</th>
-					<th>Mobilization Date</th>
-					<th>Request Details</th>
-					<th>Approvals</th>
-			</thead>
-        </table>
-        </div>
+            <div class="table-responsive">
+                <table id="main_table" class="table">
+                    <thead>
+                    <th></th>
+                    <th></th>
+                    <th>Requesting Dept</th>
+                    <th>Job Title</th>
+                    <th>Request Date</th>
+                    <th>Mobilization Date</th>
+                    <th>Request Details</th>
+                    <th>Approvals</th>
+                    </thead>
+                </table>
+            </div>
+</div>
 
 <div class="modal fade" id="get_request_details_modal" tabindex="-1" role="dialog" aria-labelledby="get_request_details_modal" style="overflow: auto">
   <div class="modal-dialog" role="document">
@@ -141,40 +164,43 @@ function showButtonIfExecutive(){
       <button class="btn btn-primary" id="request_details_add_btn">Add</button>
       <button class="btn btn-warning" id="request_details_edit_btn">Edit</button>
       <button class="btn btn-danger" id="request_details_delete_btn">Delete</button>
-      <table id="request_details_table"  width="100%">
-          <thead>
-              <tr>
-                  <th>Employment Type</th>
-                  <th>Duration From</th>
-                  <th>Duration Until</th>
-                  <th>Replacement</th>
-                  <th>Budget Included</th>
-                  <th>Budget Clearance</th>
-                  <th>Date</th>
-              </tr>
-          </thead>
-      </table>
-      <table id="request_details_table2"  width="100%">
-        <thead>
-            <tr>
-                <th>Justification</th>
-            </tr>
-        </thead>
-        </table>
-          <table id="request_details_table3" width="100%">
-              <thead>
+          <div class="table-responsive">
+              <table id="request_details_table"  width="100%" class="table">
+                  <thead>
+                  <tr>
+                      <th>Employment Type</th>
+                      <th>Duration From</th>
+                      <th>Duration Until</th>
+                      <th>Replacement</th>
+                      <th>Budget Included</th>
+                      <th>Budget Clearance</th>
+                      <th>Date</th>
+                  </tr>
+                  </thead>
+              </table>
+              <table id="request_details_table2"  width="100%" class="table">
+                  <thead>
+                  <tr>
+                      <th>Justification</th>
+                  </tr>
+                  </thead>
+              </table>
+              <table id="request_details_table3" width="100%" class="table">
+                  <thead>
                   <tr>
                       <th>Job Summary</th>
                   </tr>
-              </thead>
-          </table>
-          <table id="request_details_table4" width="100%">
-              <thead>
+                  </thead>
+              </table>
+              <table id="request_details_table4" width="100%" class="table">
+                  <thead>
                   <tr>
                       <th>Qualifications and Other Requirements</th>
                   </tr>
-              </thead>
-          </table>
+                  </thead>
+              </table>
+          </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -194,17 +220,18 @@ function showButtonIfExecutive(){
 		  </div>
         </div>
         <div class="modal-body" style="height: 350px;">
-          <table id="request_approval_table" width="80%">
-              <thead>
-                  <tr>
-                      <th>Endoresed By</th>
-                      <th>Recommending Approval</th>
-                      <th>Approved By</th>
-                  </tr>
-              </thead>
-          </table>
-          
-    </div>
+            <div class="table-responsive">
+                <table id="request_approval_table" width="80%" class="table">
+                    <thead>
+                    <tr>
+                        <th>Endoresed By</th>
+                        <th>Recommending Approval</th>
+                        <th>Approved By</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
     <div class="modal-footer">
         <?php
                 showButtonIfExecutive();

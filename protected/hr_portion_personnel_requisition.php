@@ -91,27 +91,26 @@ function showButtonIfExecutive(){
             <h4 class="ccu_title_second" style="margin-bottom: 0"><?php echo $jobDesc ?></h4>
             <h4 class="ccu_title_second"><?php echo $deptdesc ?></h4> <a href="./dashboard.php">Home</a> <a href="#">Training</a> <a href="#">Leave</a> <a href="logout.php">Logout</a> </div>
         <div class="ccu_main">
-            <h2 class="ccu_heading" style="text-align:left; margin-top: 10px">Quick Links</h2> <a class="btn btn-primary">Request Leave</a> <a href="add_training.php" class="btn btn-primary">Request Training</a>
-            <button class="btn btn-primary" id="add_new_personnel_request">Request Personnel</button>
-            <hr>
             <h2 class="ccu_heading">Employee Requisition - HR Portion </h2>
-            <table id="HR_PORTION_table">
-			<thead>
-				<th>Requesting Dept</th>
-				<th>Job Title</th>
-				<th>Request Date</th>
-                <th>Mobilization Date</th>
-                <th>Employment Type</th>
-                <th>Employment Duration</th>
-                <th>Replacement</th>
-                <th>Budgetary Details</th>
-                <th>Justification</th>
-                <th>Job Summary</th>
-                <th>Qualification and Others</th>
-                <th>Approvals</th>
-                <th>HR Portion</th>
-			</thead>
-			</table>
+            <div class="table-responsive">
+                <table id="HR_PORTION_table" class="table">
+                    <thead>
+                    <th>Requesting Dept</th>
+                    <th>Job Title</th>
+                    <th>Request Date</th>
+                    <th>Mobilization Date</th>
+                    <th>Employment Type</th>
+                    <th>Employment Duration</th>
+                    <th>Replacement</th>
+                    <th>Budgetary Details</th>
+                    <th>Justification</th>
+                    <th>Job Summary</th>
+                    <th>Qualification and Others</th>
+                    <th>Approvals</th>
+                    <th>HR Portion</th>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
     
